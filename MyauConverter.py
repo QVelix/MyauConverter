@@ -29,6 +29,30 @@ def convertTextToMyau(text):
         newMyauText+=myauWord+" "
     return newMyauText
 
+def convertTextToMyauBySyllables(text):
+    dictionary = ['a', 'e', 'u', 'o', 'i'] 
+    textAr = text.split()
+    newMyauText = ""
+    for word in textAr:
+        wordLength = len(word)
+        newWord = ""
+        for d in dictionary:
+            if word[0].find(d)!=-1:
+                newWord+="Мяу"
+        if len(newWord)>0:
+            i = 1
+        else: 
+            newWord+="Мяу"
+            i=2
+        while i<wordLength:
+            for d in dictionary:
+                if word[i].find(d)!=-1:
+                    newWord+="мяу"
+            i+=1
+        newMyauText+=newWord+" "
+    return newMyauText
+
 text = input('Enter text: ')
 
 print(convertTextToMyau(text))
+print(convertTextToMyauBySyllables(text))
